@@ -1,7 +1,18 @@
 <% provide(:title, 'Home') %>
-<h1>Library</h1>
-<p>
-  This is the home page for the
-  <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+
+<div id="banner">
+	||
+	<%= @page_title || "Library" %>
+</div>
+<div id="columns">
+	<div id="side">
+		<a href="http://www....">Home</a><br />
+		<a href="http://www..../faq">FAQ</a><br />
+		<a href="http://www..../news">Notícias</a><br />
+		<a href="http://www..../contact">Contatos</a><br />
+		<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
+	</div>
+	<div id="main">
+		<%= render "conteudo" %>
+	</div>
+</div>
