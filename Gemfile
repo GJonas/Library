@@ -8,7 +8,9 @@ ruby '2.0.0'
 	gem 'faker', '1.1.2'
 	gem 'will_paginate', '3.0.4'
 	gem 'bootstrap-will_paginate', '0.0.9'
+	#gem "paperclip", "~> 2.0"
 
+	gem 'paperclip', '~> 3.5.2'
 
 group :development, :test do
 	gem 'sqlite3', '~>1.3.7'

@@ -1,0 +1,17 @@
+<% provide(:title, @book.title) %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= image_tag @book.avatar.url(:thumb) %>
+				
+			</br>
+			
+			<%= @book.title %>
+		</h1>
+		
+		<%= @book.author %>
+	</section>
+</aside>
+
+</div>

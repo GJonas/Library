@@ -1,0 +1,9 @@
+<li>
+  <!--= gravatar_for book, size: 52 %>-->
+  <%= image_tag book.avatar.url(:thumb) %>
+  <%= link_to book.title, book %>
+       | <%= link_to "delete", book, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  
+</li>
+
