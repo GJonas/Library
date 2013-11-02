@@ -8,10 +8,22 @@ Library::Application.routes.draw do
   #get "static_pages/about"
 
   #get "users/new"
+  resources :sessions, only: [:new, :create, :destroy]
+  
   root 'static_pages#home'
-   match '/signup',  to: 'users#new',            via: 'get'
+     
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
+  match '/signup', to: 'users#new', via: 'get'
+
+  #resources :sessions, only: [:create]
+
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signin', to: 'sessions#create', via: 'post'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
