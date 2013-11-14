@@ -1,0 +1,10 @@
+<% provide(:title, 'Meus Emprestimos') %>
+<h1>Meus Emprestimos</h1>
+
+<%= will_paginate %>
+
+<ul class="books">
+	<%= render @loans%>
+</ul>
+
+<%= will_paginate %>

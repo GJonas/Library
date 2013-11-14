@@ -12,5 +12,13 @@
       <%= @user.email %></br><%= @user.phone %>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.loans.any? %>
+      <h3>Loans (<%= @user.loans.count %>)</h3>
+      <ol class="microposts">
+        <%= render @user.loans %>
+      </ol>
+    <% end %>
+  </div>
   
 </div>

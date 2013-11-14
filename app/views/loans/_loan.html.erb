@@ -1,0 +1,20 @@
+<li>
+	<!--= gravatar_for book, size: 52 %>-->
+
+	<ul class="books">
+        <%= image_tag loan.book.avatar.url(:thumb) %>
+		<h5>Data</h5>
+		<%= loan.data %>
+		<h5>Livro</h5>
+		<%= loan.book.title %>
+		 <h5>Status</h5>
+		
+		<%= loan.status %>
+		<% if current_user.admin? %>
+    | <%= link_to "delete", loan, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+	</ul>
+
+</li>
+

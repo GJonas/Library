@@ -1,0 +1,22 @@
+<% provide(:title, 'Loan') %>
+<h1>Loan</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@loan, :html => { :multipart => true }) do |f| %>
+		 <%= render 'shared/error_messages' %>
+		
+		<%= f.label :data %>
+		<%= f.date :data%>
+
+		<%= f.label :book %>
+		<%= f.text_field :book %>
+
+		<%= f.label :user %>
+		<%= f.text_field :user %>
+
+		
+		<%= f.submit "Comfirm", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

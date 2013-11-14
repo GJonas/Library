@@ -1,9 +1,15 @@
-<li>
-  <!--= gravatar_for book, size: 52 %>-->
-  <%= image_tag book.avatar.url(:thumb) %>
-  <%= link_to book.title, book %>
-       | <%= link_to "delete", book, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  
-</li>
 
+
+<div class = "microposts">
+   
+	<ol class="microposts">
+		<%= image_tag book.avatar.url(:medium) %>
+		<%= link_to book.title, book %>
+		| <%= link_to "Emprestar", lend_book_path(book), method: :post %>
+		<% if current_user.admin?  %>
+		| <%= link_to "Deletar", book, method: :delete,
+		data: { confirm: "You sure?" } %>
+		<% end %>
+	</ol>
+
+</div>

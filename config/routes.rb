@@ -1,26 +1,41 @@
 Library::Application.routes.draw do
-  
+
   get "users/new"
-  resources :books
+  resources :books do
+    member do
+      post 'lend', controller: 'loans', action: 'lend'
+    end
+  end
+
+
+
   resources :users
+  
+
   #get "static_pages/home"
   #get "static_pages/help"
   #get "static_pages/about"
 
   #get "users/new"
   resources :sessions, only: [:new, :create, :destroy]
+  resources :loans, only: [:create, :destroy, :index]
   
   root 'static_pages#home'
-     
+
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
+
 
   #resources :sessions, only: [:create]
 
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signin', to: 'sessions#create', via: 'post'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+
+  #loans
+
+
 
 
   

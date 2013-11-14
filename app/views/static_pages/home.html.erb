@@ -13,6 +13,10 @@
 		<a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
 	</div>
 	<div id="main">
-		<%= render  @books %>
+		<% if current_user %>
+		<%= render @books %>
+		<% end %>
+		
+		<%= render "conteudo" %>
 	</div>
 </div>

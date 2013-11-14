@@ -3,14 +3,16 @@
 	<aside class="span4">
 		<section>
 			<h1>
-				<%= image_tag @book.avatar.url(:thumb) %>
+				<%= image_tag @book.avatar.url() %>
 				
 			</br>
 			
 			<%= @book.title %>
 		</h1>
-		
+		</br>
 		<%= @book.author %>
+	</br>
+	<h4>| <%= link_to "Emprestar", lend_book_path(@book), method: :post %></h4>
 	</section>
 </aside>
 

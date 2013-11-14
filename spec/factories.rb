@@ -20,5 +20,10 @@ FactoryGirl.define do
       admin true
     end	
 	end
+	factory :loan do
+    data "01/01/2013"
+    user
+    
+  end
 	
 end

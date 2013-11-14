@@ -15,6 +15,7 @@ describe User do
 	it { should respond_to(:remember_token) }
 	it { should respond_to(:authenticate) }
 	it { should respond_to(:admin) }
+	it { should respond_to(:loans) }
 
 	it { should be_valid }
 	it { should_not be_admin }
@@ -91,6 +92,29 @@ describe User do
 
 				it { should_not eq user_for_invalid_password }
 				specify { expect(user_for_invalid_password).to be_false }
+			end
+		end
+
+		describe "loans associations" do
+
+			before { @user.save }
+			let!(:older_loans) do
+				FactoryGirl.create(:loan, user: @user,  created_at: 1.day.ago)
+			end
+			let!(:newer_loans) do
+				FactoryGirl.create(:loan, user: @user,  created_at: 1.hour.ago)
+			end
+			it "should destroy associated loans" do
+				loans = @user.loans.to_a
+				@user.destroy
+				expect(loans).not_to be_empty
+				loans.each do |loan|
+					expect(Loan.where(id: loan.id)).to be_empty
+				end
+			end
+
+			it "should have the right microposts in the right order" do
+				expect(@user.loans.to_a).to eq [newer_loans, older_loans]
 			end
 		end
 	end
