@@ -2,20 +2,21 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0
 
-	gem 'rails', '~>4.0.0'
-	gem 'bootstrap-sass', '~>2.3.2.0'
-	gem 'bcrypt-ruby', '~>3.1.2'
-	gem 'faker', '1.1.2'
-	gem 'will_paginate', '3.0.4'
-	gem 'bootstrap-will_paginate', '0.0.9'
+gem 'rails', '~>4.0.0'
+gem 'bootstrap-sass', '~>2.3.2.0'
+gem 'bcrypt-ruby', '~>3.1.2'
+gem 'faker', '1.1.2'
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 	#gem "paperclip", "~> 2.0"
 	gem "gmail", "~> 0.4.0"
 	gem 'paperclip', '~> 3.5.2'
+	
 
-group :development, :test do
-	gem 'sqlite3', '~>1.3.7'
-	gem 'rspec-rails', '~>2.13.1'
-	gem 'guard-rspec', '~>2.5.0'
+	group :development, :test do
+		gem 'sqlite3', '~>1.3.7'
+		gem 'rspec-rails', '~>2.13.1'
+		gem 'guard-rspec', '~>2.5.0'
 	#gem 'growl', '~>1.0.3'
 	gem 'spork-rails', git: 'https://github.com/sporkrb/spork-rails.git'
 	gem 'guard-spork', '~>1.5.0'
@@ -30,16 +31,25 @@ group :test do
 	gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
 
-gem 'sass-rails', '~>4.0.0'
-gem 'uglifier', '~>2.1.1'
-gem 'coffee-rails', '~>4.0.0'
-gem 'jquery-rails', '~>3.0.4'
-gem 'turbolinks', '~>1.1.1'
-gem 'jbuilder', '~>1.0.2'
+	gem 'sass-rails', '~>4.0.0'
+	gem 'uglifier', '~>2.1.1'
+	gem 'coffee-rails', '~>4.0.0'
+	gem 'jquery-rails', '~>3.0.4'
+	gem 'turbolinks', '~>1.1.1'
+	gem 'jbuilder', '~>1.0.2'
 
 
 group :doc do
 	gem 'sdoc', '~>0.3.20', require: false
+
+	gem 'unicorn'
+
+# Use Capistrano for deployment
+	gem 'capistrano', '~> 3.0', group: :development
+	gem 'capistrano-rails', group: :development
+	gem 'capistrano-bundler', group: :development
+	gem 'capistrano-rvm', '~> 0.0.3', group: :development
+
 end
 
 group :production do
