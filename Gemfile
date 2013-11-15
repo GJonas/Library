@@ -18,10 +18,10 @@ gem 'bootstrap-will_paginate', '0.0.9'
 		gem 'rspec-rails', '~>2.13.1'
 		gem 'guard-rspec', '~>2.5.0'
 	#gem 'growl', '~>1.0.3'
-	gem 'spork-rails', git: 'https://github.com/sporkrb/spork-rails.git'
-	gem 'guard-spork', '~>1.5.0'
-	gem 'childprocess', '~>0.3.6'
-end
+		#gem 'spork-rails', git: 'https://github.com/sporkrb/spork-rails.git'
+		gem 'guard-spork', '~>1.5.0'
+		gem 'childprocess', '~>0.3.6'	
+	end
 
 group :test do
 	gem 'selenium-webdriver', '~>2.35.1'
@@ -41,15 +41,11 @@ end
 
 group :doc do
 	gem 'sdoc', '~>0.3.20', require: false
-
 	gem 'unicorn'
-
-# Use Capistrano for deployment
 	gem 'capistrano', '~> 3.0', group: :development
 	gem 'capistrano-rails', group: :development
 	gem 'capistrano-bundler', group: :development
 	gem 'capistrano-rvm', '~> 0.0.3', group: :development
-
 end
 
 group :production do
