@@ -17,6 +17,7 @@
           <% if signed_in? %>
           <% if current_user.admin %>
            <li><%= link_to "Users", users_path %></li>
+           <li><%= link_to "New Book", new_book_path %></li>
            <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
