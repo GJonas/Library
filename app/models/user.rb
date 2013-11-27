@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
     def User.encrypt(token)
          Digest::SHA1.hexdigest(token.to_s)
     end
+    def self.search(search, page)
+		if search
+			paginate :per_page => 5, :page => page,
+           :conditions => ['name LIKE ?', "%#{search}%"], :order => 'name'
+		else
+			paginate :per_page => 5, :page => page
+		end
+	end
 
     private
 

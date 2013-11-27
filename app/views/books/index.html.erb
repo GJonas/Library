@@ -2,9 +2,10 @@
 <h1>All books</h1>
 
 <%= will_paginate %>
-
-<ul class="books">
-	<%= render @books%>
-</ul>
+<div class="row">
+	<ul class="thumbnails">
+		<%= render @books%>
+	</ul>
+</div>
 
 <%= will_paginate %>

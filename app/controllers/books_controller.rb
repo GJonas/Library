@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 		@book = Book.new
 	end
 	def index
-		@books = Book.paginate(page: params[:page])
+		@books = Book.search(params[:search], params[:page])
 	end
 
 

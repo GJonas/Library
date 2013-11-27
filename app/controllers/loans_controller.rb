@@ -42,7 +42,7 @@ class LoansController < ApplicationController
 
 	def	mail
 
-		gmail = Gmail.connect("jonas2moreira@gmail.com","vivimoreira")
+		gmail = Gmail.connect("jonas2moreira@gmail.com","")
 		gmail.deliver do
 			to "jonas2moreira@gmail.com"
 			subject "Having fun in Puerto Rico!"

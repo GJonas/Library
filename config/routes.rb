@@ -21,7 +21,6 @@ Library::Application.routes.draw do
   resources :loans, only: [:create, :destroy, :index]
   
   root 'static_pages#home'
-
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/signup', to: 'users#new', via: 'get'
@@ -34,7 +33,8 @@ Library::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   #loans
-
+match '/search', to: 'books#index', via: 'get'
+match '/search_user', to: 'users#index', via: 'get'
 
 
 
