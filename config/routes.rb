@@ -18,7 +18,7 @@ Library::Application.routes.draw do
 
   #get "users/new"
   resources :sessions, only: [:new, :create, :destroy]
-  resources :loans, only: [:create, :destroy, :index]
+  resources :loans, only: [:create, :destroy, :index, :update]
   
   root 'static_pages#home'
   match '/help', to: 'static_pages#help', via: 'get'

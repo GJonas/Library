@@ -4,28 +4,28 @@ class LoansController < ApplicationController
 		@loan = Loan.new
 	end
 	def index
-		@loans = current_user.loans.paginate(page: params[:page])
+		@loans = current_user.loans_open.paginate(page: params[:page])
 	end
 
 	def lend
-	   if( duplicate_loan)	
-		  flash[:errors] = "Você ja emprestou este livro "
+	   if( current_user.loans_loser )	
+		  flash[:errors] = "Você pussui emprestimo pendente " 
 		  redirect_to books_path
 	       else 
-	   	      if(current_user.loans.count >= 3)
+	   	      if(current_user.loans_limit)
 	   	      	flash[:errors] = "Você ja possui 3 emprestimo "
 			    redirect_to books_path
 
 		       else
-			     if(current_user.loans.count > 0 && current_user.loans.last.data < Time.now - 7.days)
-				   flash[:errors] = "Você pussui emprestimo pendente "
+			      if(duplicate_loan)
+				   flash[:errors] = "Você ja emprestou este livro "
 				   redirect_to books_path	
 			       else
 
 				     @book = Book.find(params[:id])
 				      Loan.create(data: Time.now, user: current_user, book: @book)
 				      #mail
-				      flash[:success] = "Livro #{@book.title} empretado"
+				      flash[:success] = "Livro #{@book.title} emprestado"
 				      redirect_to books_path
 				
 			        end
@@ -44,7 +44,7 @@ class LoansController < ApplicationController
 
 		gmail = Gmail.connect("jonas2moreira@gmail.com","")
 		gmail.deliver do
-			to "jonas2moreira@gmail.com"
+			to "jonas2moreira@hotmail.com"
 			subject "Having fun in Puerto Rico!"
 			text_part do
 				flash[:errors] = "Email enviado"
@@ -54,10 +54,13 @@ class LoansController < ApplicationController
 		gmail.logout
 	end
 
-	def destroy
-		Loan.find(params[:id]).destroy
-		flash[:success] = "Loan deleted."
-		redirect_to :users
+	def update
+		loan = Loan.find(params[:id])
+		loan.update_attribute(:status, 'devolvido')
+
+		loan.destroy
+		flash[:success] = "Emprestimo devolvido!."
+		redirect_to :back
 		#@loan = current_user.loans.where(book_id: params[:id]).first
 		#@loan.delivired (update_attribute(:status, 'desenvolvido'))
 	end
@@ -68,7 +71,7 @@ class LoansController < ApplicationController
 	end
 
 	def duplicate_loan
-		current_user.loans.where(book_id: params[:id]).first
+		current_user.loans_open.where(book_id: params[:id]).first
 		##loans = current_user.loans.find(book_id: params[:id])
 		#!loans.empty?
 	end

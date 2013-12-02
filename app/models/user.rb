@@ -28,6 +28,17 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def loans_open
+		loans.where(status: 'open')
+	end
+	def loans_loser
+	loans_open.count > 0 && loans_open.last.data < Time.now - 7.days
+	end
+
+	def loans_limit
+		loans_open.count >= 3
+	end	
+		
     private
 
     def create_remember_token

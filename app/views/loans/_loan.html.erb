@@ -1,19 +1,16 @@
 <li class= "pull-left book">
 	<!--= gravatar_for book, size: 52 %>-->
-
 	
-	
-        <%= image_tag loan.book.avatar.url(:medium) %>
+        <%= image_tag loan.book.avatar.url(:thumb) %>
         
 		<h5>Data: <%= loan.data %></h5>
 		<h5>Livro: <%= loan.book.title %></h5>
 		
-		 <h5>Status: <%= loan.status %></h5>
-		
-		
-		<% if current_user.admin? %>
-    | <%= link_to "delete", loan, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+		 <h5>Status: <%= loan.status  %></h5>
+				
+		<% if current_user.admin? && loan.status == 'open' %>
+		<%= button_to "Devolver",loan, :class => "btn btn-default", :method => :put, data: { confirm: "Confimar" } %>
+    
   <% end %>
   
 	

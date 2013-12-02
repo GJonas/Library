@@ -9,9 +9,9 @@
 
 
          <% if signed_in? %>
-         <li><%= form_tag search_path, :method => 'get' ,:class => 'form-search navbar-form'  do %>
+         <li><%= form_tag search_user_path, :method => 'get' ,:class => 'form-search navbar-form'  do %>
            <%= text_field_tag :search, params[:search], class: "input-medium search-query" %>
-           <%= submit_tag "Search Books" , class: "btn btn-small" %> 
+           <%= submit_tag "Search Users" , class: "btn btn-small" %> 
            <% end %></li>
            
            <li><%= link_to "Books", books_path %></li>
@@ -21,13 +21,7 @@
            <li><%= link_to "Loans", loans_path %></li>
            <li><%= link_to "Users", users_path %></li>
            
-           <li><%= link_to "New Books", new_book_path %></li>
-
-
-
-
-
-
+           <li><%= link_to "New Book", new_book_path %></li>
            <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
@@ -42,6 +36,7 @@
             </ul>
           </li>
           <% else %>
+          <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>

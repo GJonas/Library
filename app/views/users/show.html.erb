@@ -1,24 +1,25 @@
 
-
 <% provide(:title, @user.name) %>
 
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
       <h1>
-       <%= image_tag @user.avatar.url(:thumb) %>
-        <%= @user.name %>
+       <%= image_tag @user.avatar.url(:medium) %>
       </h1>
-      <%= @user.email %></br><%= @user.phone %>
-    </section>
-  </aside>
-  <div class="span8">
-    <% if @user.loans.any? %>
-      <h3>Loans (<%= @user.loans.count %>)</h3>
-      <ol class="microposts">
-        <%= render @user.loans %>
-      </ol>
-    <% end %>
-  </div>
-  
+      <h1>
+         <%= @user.name %>
+     </h1>
+     <%= @user.email %></br><%= @user.phone %>
+
+   </section>
+ </aside>
+ <h3>Loans (<%= @user.loans.count %>)</h3>
+ <section>
+
+   <h3>
+      <%= render @user.loans %>
+  </h3>
+  </section>
 </div>
+
