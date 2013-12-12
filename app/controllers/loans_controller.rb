@@ -45,7 +45,7 @@ class LoansController < ApplicationController
 
 		ContactMailer.contact_message(params[:contact]).deliver
 				flash[:notice] = 'Mensagem enviado com sucesso' 
-					end
+	end
 
 	def update
 		loan = Loan.find(params[:id])

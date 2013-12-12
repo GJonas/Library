@@ -49,7 +49,7 @@ gem 'jbuilder', '~>1.0.2'
 gem 'unicorn'
 gem 'capistrano', '~> 3.0', group: :development
 gem 'capistrano-rails', group: :development
-gem 'capistrano-bundler', group: :development
+gem 'capistrano-bundler', '1.0.0', group: :development
 gem 'capistrano-rvm', '~> 0.0.3', group: :development
 
 
