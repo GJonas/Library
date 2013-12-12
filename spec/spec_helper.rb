@@ -6,6 +6,8 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+  require 'simplecov'
+   SimpleCov.start
     
   ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
   

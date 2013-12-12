@@ -5,33 +5,34 @@ class LoansController < ApplicationController
 	end
 	def index
 		@loans = current_user.loans_open.paginate(page: params[:page])
+
 	end
 
 	def lend
-	   if( current_user.loans_loser )	
-		  flash[:errors] = "Você pussui emprestimo pendente " 
-		  redirect_to books_path
-	       else 
-	   	      if(current_user.loans_limit)
-	   	      	flash[:errors] = "Você ja possui 3 emprestimo "
-			    redirect_to books_path
+		if( current_user.loans_loser )	
+			flash[:errors] = "Você pussui emprestimo pendente "  
+			redirect_to books_path
+		else 
+			if(current_user.loans_limit)
+				flash[:errors] = "Você ja possui 3 emprestimo "
+				redirect_to books_path
 
-		       else
-			      if(duplicate_loan)
-				   flash[:errors] = "Você ja emprestou este livro "
-				   redirect_to books_path	
-			       else
+			else
+				if(duplicate_loan)
+					flash[:errors] = "Você ja emprestou este livro "
+					redirect_to books_path	
+				else
 
-				     @book = Book.find(params[:id])
-				      Loan.create(data: Time.now, user: current_user, book: @book)
-				      #mail
-				      flash[:success] = "Livro #{@book.title} emprestado"
-				      redirect_to books_path
-				
-			        end
-		        end
-	        end
-       
+					@book = Book.find(params[:id])
+					Loan.create(data: Time.now, user: current_user, book: @book)
+					call_rake :send_loan_confirmation, user_id: current_user.id
+					flash[:success] = "Livro #{@book.title} emprestado"
+					redirect_to books_path
+
+				end
+			end
+		end
+
 	end
 
 
@@ -42,17 +43,9 @@ class LoansController < ApplicationController
 
 	def	mail
 
-		gmail = Gmail.connect("jonas2moreira@gmail.com","")
-		gmail.deliver do
-			to "jonas2moreira@hotmail.com"
-			subject "Having fun in Puerto Rico!"
-			text_part do
-				flash[:errors] = "Email enviado"
-				body "Text of plaintext message."
-			end
-		end
-		gmail.logout
-	end
+		ContactMailer.contact_message(params[:contact]).deliver
+				flash[:notice] = 'Mensagem enviado com sucesso' 
+					end
 
 	def update
 		loan = Loan.find(params[:id])

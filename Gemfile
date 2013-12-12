@@ -10,7 +10,10 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 #gem "paperclip", "~> 2.0"
 gem "gmail", "~> 0.4.0"
+gem "mail", "~> 2.5.4"
 gem 'paperclip', '~> 3.5.2'
+gem 'simplecov', :require => false, :group => :test
+gem "rails_best_practices", "~> 1.14.4"
 	
 
 	group :development, :test do

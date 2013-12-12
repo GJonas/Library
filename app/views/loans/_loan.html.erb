@@ -3,7 +3,7 @@
 	
         <%= image_tag loan.book.avatar.url(:thumb) %>
         
-		<h5>Data: <%= loan.data %></h5>
+		<h5>Data: <%= loan.data.strftime("%d/%m/%Y") %></h5>
 		<h5>Livro: <%= loan.book.title %></h5>
 		
 		 <h5>Status: <%= loan.status  %></h5>

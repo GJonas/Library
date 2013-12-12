@@ -6,6 +6,10 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
 require "gmail"
+require 'mail'
+
+# Para debug apenas, é melhor que a linha abaixo seja adicionado apenas no ambiente de desenvolvimento 
+#config.action_mailer.raise_delivery_errors = true 
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
