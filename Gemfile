@@ -52,6 +52,7 @@ gem 'capistrano-rails', group: :development
 gem 'capistrano-bundler', group: :development
 gem 'capistrano-rvm', '~> 0.0.3', group: :development
 
+
 	group :production do
 		gem 'pg', '~>0.15.1'
 		gem 'rails_12factor', '~>0.0.2'
