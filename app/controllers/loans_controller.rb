@@ -24,8 +24,9 @@ class LoansController < ApplicationController
 				else
 
 					@book = Book.find(params[:id])
+					
 					Loan.create(data: Time.now, user: current_user, book: @book)
-					call_rake :send_loan_confirmation, user_id: current_user.id
+					call_rake :send_loan_confirmation, user: current_user
 					flash[:success] = "Livro #{@book.title} emprestado"
 					redirect_to books_path
 
@@ -41,11 +42,7 @@ class LoansController < ApplicationController
 
 	end
 
-	def	mail
-
-		ContactMailer.contact_message(params[:contact]).deliver
-				flash[:notice] = 'Mensagem enviado com sucesso' 
-	end
+	
 
 	def update
 		loan = Loan.find(params[:id])
